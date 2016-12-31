@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.jet.demo.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Original Toast :"
+            />
+        <Button
+            android:id="@+id/buttonOri"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ORIGINAL TOAST" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Custom Duration :"
+            />
+        <Button
+            android:id="@+id/buttonDuration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Custom Duration" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Custom Animation :"
+            />
+        <Button
+            android:id="@+id/buttonAnim"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Custom Animation" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Custom Display position :"
+            />
+        <Button
+            android:id="@+id/buttonTarget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Custom Display position" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Display content in the previous instance :"
+            />
+        <Button
+            android:id="@+id/buttonUsingPrevious"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Display content in the previous instance" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ShowImmediate :"
+            />
+        <Button
+            android:id="@+id/buttonShowImmediate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ShowImmediate" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Custom Size :"
+            />
+        <Button
+            android:id="@+id/buttonSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Custom Size" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Custom BackgroundColor :"
+            />
+        <Button
+            android:id="@+id/buttonBackgroundColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Custom BackgroundColor" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TestMaxWidth :"
+            />
+        <Button
+            android:id="@+id/buttonMaxWidth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TestMaxWidth" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@android:color/black"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SweetSnackbar Custom Anim :"
+            />
+        <Button
+            android:id="@+id/buttonSnackbarCustomAnim"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SweetSnackbar Custom Anim" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SweetSnackbar Slide In Top :"
+            />
+        <Button
+            android:id="@+id/buttonSnackbarSlideInTop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SweetSnackbar Slide In Top" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SnackbarUtils :"
+            />
+        <Button
+            android:id="@+id/buttonSnackbarActionCallback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Action Callback" />
+        <Button
+            android:id="@+id/buttonSnackbarUtils"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SnackbarUtils" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@android:color/black"
+            />
+
+        <Button
+            android:id="@+id/buttonGo2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Go Activity2" />
+    </LinearLayout>
+</ScrollView>
