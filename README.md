@@ -4,4 +4,5 @@
 ### 截屏:
 &emsp;&emsp;![](https://github.com/HuanHaiLiuXin/SweetTips/blob/master/%E5%BD%95%E5%B1%8F/SweetToast%E5%8F%8ASweetSnackbar%E6%95%88%E6%9E%9C%E5%BD%95%E5%B1%8F.gif)   
 ### TODO:
-- Android 5.0以下背景色及背景圆角改善   - Android 5.0以下自定义动画
+-1 Android 5.0以下背景色及背景圆角改善
+-2 Android 5.0以下自定义动画
