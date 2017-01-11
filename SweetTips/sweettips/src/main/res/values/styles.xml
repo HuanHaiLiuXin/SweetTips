@@ -3,7 +3,7 @@
     <style name="TextAppearance_SweetToast">
     </style>
     <style name="Anim_SweetToast">
-        <item name="android:windowEnterAnimation">@anim/toast_enter</item>
+        <item name="android:windowEnterAnimation">@anim/toast_enter_miui</item>
         <item name="android:windowExitAnimation">@anim/toast_exit</item>
     </style>
 </resources>

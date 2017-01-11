@@ -24,6 +24,36 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="backgroundResource :"
+            />
+        <Button
+            android:id="@+id/buttonBackgroundResource"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="backgroundResource :" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Custom View :"
+            />
+        <Button
+            android:id="@+id/buttonCustomView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Custom View" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add View :"
+            />
+        <Button
+            android:id="@+id/buttonAddView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add View :" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="Custom Duration :"
             />
         <Button
@@ -41,6 +71,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Custom Animation" />
+        <Button
+            android:id="@+id/buttonAnimation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Custom Enter Exit Animation" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

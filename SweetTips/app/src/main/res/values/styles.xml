@@ -9,7 +9,7 @@
     </style>
 
     <style name="Anim_1">
-        <item name="android:windowEnterAnimation">@anim/scale_enter</item>
+        <item name="android:windowEnterAnimation">@anim/toast_enter</item>
         <item name="android:windowExitAnimation">@anim/toast_exit</item>
     </style>
 
@@ -24,7 +24,7 @@
     </style>
 
     <style name="Anim_4">
-        <item name="android:windowEnterAnimation">@anim/toast_enter</item>
+        <item name="android:windowEnterAnimation">@anim/scale_enter</item>
         <item name="android:windowExitAnimation">@anim/toast_exit</item>
     </style>
 

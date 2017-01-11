@@ -10,6 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import com.jet.demo.R;
 import com.jet.sweettips.toast.SweetToast;
 import com.jet.sweettips.util.SnackbarUtils;
 

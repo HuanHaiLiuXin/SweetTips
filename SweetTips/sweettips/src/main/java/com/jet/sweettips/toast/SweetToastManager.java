@@ -26,15 +26,19 @@ public final class SweetToastManager {
     private static Runnable mShowNext = new Runnable() {
         @Override
         public void run() {
-            if(queue.size() > 0){
-                SweetToast previous = poll();
-                previous.handleHide();
+            try {
                 if(queue.size() > 0){
-                    SweetToast current = peek();
-                    current.handleShow();
-                    long delay = (current.getConfiguration().getDuration() == SweetToast.LENGTH_LONG||current.getConfiguration().getDuration() == Toast.LENGTH_LONG) ? SweetToast.LONG_DELAY : ((current.getConfiguration().getDuration() == SweetToast.LENGTH_SHORT || current.getConfiguration().getDuration() == Toast.LENGTH_SHORT)? SweetToast.SHORT_DELAY : current.getConfiguration().getDuration());
-                    queueHandler.postDelayed(mShowNext,delay);
+                    SweetToast previous = poll();
+                    previous.handleHide();
+                    if(queue.size() > 0){
+                        SweetToast current = peek();
+                        current.handleShow();
+                        long delay = (current.getConfiguration().getDuration() == SweetToast.LENGTH_LONG||current.getConfiguration().getDuration() == Toast.LENGTH_LONG) ? SweetToast.LONG_DELAY : ((current.getConfiguration().getDuration() == SweetToast.LENGTH_SHORT || current.getConfiguration().getDuration() == Toast.LENGTH_SHORT)? SweetToast.SHORT_DELAY : current.getConfiguration().getDuration());
+                        queueHandler.postDelayed(mShowNext,delay);
+                    }
                 }
+            }catch (Exception e){
+                Log.e("幻海流心","e:"+e.getLocalizedMessage());
             }
         }
     };
@@ -43,60 +47,84 @@ public final class SweetToastManager {
     private static long singleHideTimeMillis = 0L;
 
     private static void offer(SweetToast sweetToast){
-        if(queue != null){
-            queue.offer(sweetToast);
+        try {
+            if(queue != null){
+                queue.offer(sweetToast);
+            }
+        }catch (Exception e){
+            Log.e("幻海流心","e:"+e.getLocalizedMessage());
         }
     }
     private static SweetToast poll(){
-        if(queue.size() > 0){
-            return queue.poll();
+        try {
+            if(queue.size() > 0){
+                return queue.poll();
+            }
+        }catch (Exception e){
+            Log.e("幻海流心","e:"+e.getLocalizedMessage());
         }
         return null;
     }
     private static SweetToast peek(){
-        if(queue.size() > 0){
-            return queue.peek();
+        try {
+            if(queue.size() > 0){
+                return queue.peek();
+            }
+        }catch (Exception e){
+            Log.e("幻海流心","e:"+e.getLocalizedMessage());
         }
         return null;
     }
     private static void clear(){
-        if(queue.size() > 0){
-            while (queue.peek() != null){
-                SweetToast item = queue.poll();
-                item.setHideEnabled(true);
-                item.handleHide();
-                item = null;
+        try {
+            if(queue.size() > 0){
+                while (queue.peek() != null){
+                    SweetToast item = queue.poll();
+                    item.setHideEnabled(true);
+                    item.handleHide();
+                    item = null;
+                }
             }
-        }
-        if(singleToast != null){
-            singleToast.setHideEnabled(true);
-            singleToast.handleHide();
-            singleToast = null;
+            if(singleToast != null){
+                singleToast.setHideEnabled(true);
+                singleToast.handleHide();
+                singleToast = null;
+            }
+        }catch (Exception e){
+            Log.e("幻海流心","e:"+e.getLocalizedMessage());
         }
     }
     private static void clearQueue(){
-        if(queue.size() > 0){
-            while (queue.peek() != null){
-                SweetToast item = queue.poll();
-                item.setHideEnabled(true);
-                item.handleHide();
-                item = null;
+        try {
+            if(queue.size() > 0){
+                while (queue.peek() != null){
+                    SweetToast item = queue.poll();
+                    item.setHideEnabled(true);
+                    item.handleHide();
+                    item = null;
+                }
             }
+        }catch (Exception e){
+            Log.e("幻海流心","e:"+e.getLocalizedMessage());
         }
     }
     /**
      * 将当前SweetToast实例添加到queue中
      */
     protected static void show(@NonNull SweetToast current){
-        if(queue.size() <= 0){
-            clear();
-            //队列为空,则将current添加到队列中,同时进行展示
-            offer(current);
-            current.handleShow();
-            long delay = (current.getConfiguration().getDuration() == SweetToast.LENGTH_LONG||current.getConfiguration().getDuration() == Toast.LENGTH_LONG) ? SweetToast.LONG_DELAY : ((current.getConfiguration().getDuration() == SweetToast.LENGTH_SHORT || current.getConfiguration().getDuration() == Toast.LENGTH_SHORT)? SweetToast.SHORT_DELAY : current.getConfiguration().getDuration());
-            queueHandler.postDelayed(mShowNext,delay);
-        }else{
-            offer(current);
+        try {
+            if(queue.size() <= 0){
+                clear();
+                //队列为空,则将current添加到队列中,同时进行展示
+                offer(current);
+                current.handleShow();
+                long delay = (current.getConfiguration().getDuration() == SweetToast.LENGTH_LONG||current.getConfiguration().getDuration() == Toast.LENGTH_LONG) ? SweetToast.LONG_DELAY : ((current.getConfiguration().getDuration() == SweetToast.LENGTH_SHORT || current.getConfiguration().getDuration() == Toast.LENGTH_SHORT)? SweetToast.SHORT_DELAY : current.getConfiguration().getDuration());
+                queueHandler.postDelayed(mShowNext,delay);
+            }else{
+                offer(current);
+            }
+        }catch (Exception e){
+            Log.e("幻海流心","e:"+e.getLocalizedMessage());
         }
     }
 
@@ -135,11 +163,15 @@ public final class SweetToastManager {
             singleHideTimeMillis = delay + System.currentTimeMillis();
             singleHandler.postDelayed(r,delay);
         }catch (Exception e){
-            Log.e("Jet","e:"+e.getLocalizedMessage()+":146");
+            Log.e("幻海流心","e:"+e.getLocalizedMessage());
         }
     }
     protected static void showImmediate(@NonNull SweetToast current){
-        clear();
-        show(current);
+        try {
+            clear();
+            show(current);
+        }catch (Exception e){
+            Log.e("幻海流心","e:"+e.getLocalizedMessage());
+        }
     }
 }

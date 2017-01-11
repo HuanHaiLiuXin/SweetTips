@@ -3,15 +3,15 @@ package com.jet.demo;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
+import android.view.animation.Animation;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.jet.sweettips.constant.Constant;
@@ -22,8 +22,12 @@ import com.jet.sweettips.util.SnackbarUtils;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private Context context = null;
+    private Button buttonBackgroundResource = null;
+    private Button buttonCustomView = null;
+    private Button buttonAddView = null;
     private Button buttonDuration = null;
     private Button buttonAnim = null;
+    private Button buttonAnimation = null;
     private Button buttonTarget = null;
     private Button buttonUsingPrevious = null;
     private Button buttonShowImmediate = null;
@@ -53,12 +57,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String[] animTags = new String[]{
             "Custom Animation 1",
             "Custom Animation 2",
-            "Custom Animation 3"
+            "Custom Animation 3",
+            "Custom Animation 4"
     };
-    private int[] animValues = new int[]{
-            R.style.Anim_1,
-            R.style.Anim_2,
-            R.style.Anim_3
+    private SweetToast.SweetToastWindowAnimations[] animValues = new SweetToast.SweetToastWindowAnimations[]{
+            SweetToast.SweetToastWindowAnimations.AnimationDialog,
+            SweetToast.SweetToastWindowAnimations.AnimationTranslucent,
+            SweetToast.SweetToastWindowAnimations.AnimationToast,
+            SweetToast.SweetToastWindowAnimations.AnimationActivity
+    };
+    private int[][] animationValues = new int[][]{
+            {R.anim.toast_enter,R.anim.toast_exit},
+            {R.anim.scale_enter,R.anim.scale_exit},
+            {R.anim.slide_in_left,R.anim.slide_out_left},
+            {R.anim.scale_enter2,R.anim.scale_exit2}
     };
     private int positionIndex = 0;
     private String[] positionTags = new String[]{
@@ -87,9 +99,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     };
     private int sizeIndex = 0;
     private String[] sizeTags = new String[]{
-            "Custom Size : 200 * 200",
-            "Custom Size : 400 * 400",
-            "Custom Size : 600 * 600"
+            "Custom minSize : 200 * 200",
+            "Custom minSize : 400 * 400",
+            "Custom minSize : 600 * 600"
     };
     private int[] sizeValues = new int[]{
             200,
@@ -129,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int[][] snackbarAnims = new int[][]{
             {R.anim.scale_enter,R.anim.scale_exit},
             {R.anim.slide_in_left,R.anim.slide_out_left},
-            {R.anim.toast_enter,R.anim.toast_exit}
+            {R.anim.toast_enter_miui,R.anim.toast_exit}
     };
 
     @Override
@@ -139,8 +151,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+        buttonBackgroundResource = (Button) findViewById(R.id.buttonBackgroundResource);
+        buttonCustomView = (Button) findViewById(R.id.buttonCustomView);
+        buttonAddView = (Button) findViewById(R.id.buttonAddView);
         buttonDuration = (Button) findViewById(R.id.buttonDuration);
         buttonAnim = (Button) findViewById(R.id.buttonAnim);
+        buttonAnimation = (Button) findViewById(R.id.buttonAnimation);
         buttonTarget = (Button) findViewById(R.id.buttonTarget);
         buttonUsingPrevious = (Button) findViewById(R.id.buttonUsingPrevious);
         buttonShowImmediate = (Button) findViewById(R.id.buttonShowImmediate);
@@ -153,8 +169,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonSnackbarUtils = (Button) findViewById(R.id.buttonSnackbarUtils);
         buttonGo2 = (Button) findViewById(R.id.buttonGo2);
         findViewById(R.id.buttonOri).setOnClickListener(this);
+        buttonBackgroundResource.setOnClickListener(this);
+        buttonCustomView.setOnClickListener(this);
+        buttonAddView.setOnClickListener(this);
         buttonDuration.setOnClickListener(this);
         buttonAnim.setOnClickListener(this);
+        buttonAnimation.setOnClickListener(this);
         buttonTarget.setOnClickListener(this);
         buttonUsingPrevious.setOnClickListener(this);
         buttonShowImmediate.setOnClickListener(this);
@@ -175,6 +195,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //TODO implement
                 Toast.makeText(context,"Original Toast : Toast.LENGTH_SHORT",Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.buttonBackgroundResource:
+                try {
+                    SweetToast.makeText(context,"backgroundResource",Toast.LENGTH_SHORT).backgroundResource(R.drawable.shape_drawable1).showImmediate();
+                }catch (Exception e){
+                    Log.e("幻海流心","e:"+e.getLocalizedMessage());
+                }
+                break;
+            case R.id.buttonCustomView:
+                View customView = LayoutInflater.from(context).inflate(R.layout.layout_customview,null);
+                SweetToast.makeText(customView).showImmediate();
+                break;
+            case R.id.buttonAddView:
+                ImageView iv = new ImageView(context);
+                iv.setImageResource(R.mipmap.ic_launcher);
+                SweetToast.makeText(context,"Add View").addView(iv,0).showImmediate();
+                break;
             case R.id.buttonDuration:
                 //TODO implement
                 for(int i = 0;i<durationTags.length;i++){
@@ -184,54 +220,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.buttonAnim:
                 //TODO implement
-                for(int i = 0;i<animTags.length;i++){
-                    SweetToast.makeText(context,animTags[animIndex],Toast.LENGTH_SHORT).setWindowAnimations(animValues[animIndex]).backgroundColor(colorValues[animIndex]).show();
-                    animIndex = (animIndex + 1)%animTags.length;
-                }
+                SweetToast.makeText(context,animTags[animIndex],Toast.LENGTH_SHORT).setWindowAnimations(animValues[animIndex]).backgroundColor(colorValues[animIndex]).show();
+                animIndex = (animIndex + 1)%animTags.length;
+                break;
+            case R.id.buttonAnimation:
+                SweetToast.makeText(context,animTags[animIndex],Toast.LENGTH_SHORT).setAnimations(animationValues[animIndex][0],animationValues[animIndex][1]).backgroundColor(colorValues[animIndex]).show();
+                animIndex = (++animIndex)%(animTags.length);
                 break;
             case R.id.buttonTarget:
                 //TODO implement
                 //如果不是全屏,则计算状态栏的高度
                 int statusHeight = ScreenUtil.getStatusHeight(MainActivity.this);
-                for(int i=0;i<positionTags.length;i++){
-                    switch (i){
-                        case 0:
-                            SweetToast.makeText(context,positionTags[i], 1200).leftTop().backgroundColor(Constant.color_cn_tuoyan).show();
-                            break;
-                        case 1:
-                            SweetToast.makeText(context,positionTags[i], 1200).rightTop().backgroundColor(Constant.color_cn_tuoyan).show();
-                            break;
-                        case 2:
-                            SweetToast.makeText(context,positionTags[i], 1200).leftBottom().backgroundColor(Constant.color_cn_tuoyan).show();
-                            break;
-                        case 3:
-                            SweetToast.makeText(context,positionTags[i], 1200).rightBottom().backgroundColor(Constant.color_cn_tuoyan).show();
-                            break;
-                        case 4:
-                            SweetToast.makeText(context,positionTags[i], 1200).topCenter().backgroundColor(Constant.color_cn_tuoyan).show();
-                            break;
-                        case 5:
-                            SweetToast.makeText(context,positionTags[i], 1200).bottomCenter().backgroundColor(Constant.color_cn_tuoyan).show();
-                            break;
-                        case 6:
-                            SweetToast.makeText(context,positionTags[i], 1200).leftCenter().backgroundColor(Constant.color_cn_tuoyan).show();
-                            break;
-                        case 7:
-                            SweetToast.makeText(context,positionTags[i], 1200).rightCenter().backgroundColor(Constant.color_cn_tuoyan).show();
-                            break;
-                        case 8:
-                            SweetToast.makeText(context,positionTags[i], 1200).center().backgroundColor(Constant.color_cn_tuoyan).show();
-                            break;
-                        case 9:
-                            SweetToast.makeText(context,positionTags[i], 1200).layoutAbove(buttonTarget,statusHeight).backgroundColor(Constant.color_cn_tuoyan).show();
-                            break;
-                        case 10:
-                            SweetToast.makeText(context,positionTags[i], 1200).layoutBellow(buttonTarget,statusHeight).backgroundColor(Constant.color_cn_tuoyan).show();
-                            break;
-                        default:
-                            break;
-                    }
-                }
+                SweetToast.makeText(context,positionTags[0], 1200).leftTop().backgroundColor(Constant.color_cn_tuoyan).show();
+                SweetToast.makeText(context,positionTags[1], 1200).rightTop().backgroundColor(Constant.color_cn_tuoyan).show();
+                SweetToast.makeText(context,positionTags[2], 1200).leftBottom().backgroundColor(Constant.color_cn_tuoyan).show();
+                SweetToast.makeText(context,positionTags[3], 1200).rightBottom().backgroundColor(Constant.color_cn_tuoyan).show();
+                SweetToast.makeText(context,positionTags[4], 1200).topCenter().backgroundColor(Constant.color_cn_tuoyan).show();
+                SweetToast.makeText(context,positionTags[5], 1200).bottomCenter().backgroundColor(Constant.color_cn_tuoyan).show();
+                SweetToast.makeText(context,positionTags[6], 1200).leftCenter().backgroundColor(Constant.color_cn_tuoyan).show();
+                SweetToast.makeText(context,positionTags[7], 1200).rightCenter().backgroundColor(Constant.color_cn_tuoyan).show();
+                SweetToast.makeText(context,positionTags[8], 1200).center().backgroundColor(Constant.color_cn_tuoyan).show();
+                SweetToast.makeText(context,positionTags[9], 1200).layoutAbove(buttonTarget,statusHeight).backgroundColor(Constant.color_cn_tuoyan).show();
+                SweetToast.makeText(context,positionTags[10], 1200).layoutBellow(buttonTarget,statusHeight).backgroundColor(Constant.color_cn_tuoyan).show();
                 break;
             case R.id.buttonUsingPrevious:
                 SweetToast.makeText(context,previousTags[previousIndex],previousValues[previousIndex]).backgroundColor(Constant.color_cn_tuoyan).showByPrevious();
@@ -244,7 +254,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.buttonSize:
                 //TODO implement
                 for(int i=0;i<sizeTags.length;i++){
-                    SweetToast.makeText(context,sizeTags[sizeIndex],Toast.LENGTH_SHORT).backgroundColor(Constant.color_cn_tuoyan).size(sizeValues[sizeIndex],sizeValues[sizeIndex]).show();
+                    SweetToast.makeText(context,sizeTags[sizeIndex],Toast.LENGTH_SHORT).backgroundColor(Constant.color_cn_tuoyan).minSize(sizeValues[sizeIndex],sizeValues[sizeIndex]).show();
                     sizeIndex = (sizeIndex + 1)%sizeTags.length;
                 }
                 break;
@@ -274,12 +284,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onDismissed(SweetSnackbar snackbar, @DismissEvent int event) {
                         super.onDismissed(snackbar, event);
-                        SweetToast.makeText(context,"onDismissed!").showImmediate();
+                        try {
+                            SweetToast.makeText(context,"onDismissed!").showImmediate();
+                        }catch (Exception e){
+                            Log.e("幻海流心","e:"+e.getLocalizedMessage());
+                        }
                     }
                     @Override
                     public void onShown(SweetSnackbar snackbar) {
                         super.onShown(snackbar);
-                        SweetToast.makeText(context,"onShown!").showImmediate();
+                        try {
+                            SweetToast.makeText(context,"onShown!").showImmediate();
+                        }catch (Exception e){
+                            Log.e("幻海流心","e:"+e.getLocalizedMessage());
+                        }
                     }
                 }).show();
                 break;

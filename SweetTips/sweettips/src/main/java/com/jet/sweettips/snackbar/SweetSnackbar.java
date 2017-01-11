@@ -59,6 +59,8 @@ import java.lang.annotation.RetentionPolicy;
 
 /**
  * 基于Design包下的Snackbar修改而来,可自定义 入场动画 及 出场动画
+ *      功能点:
+ *          设置SweetSnackbar实例的 入场动画 及 离场动画:{@link #setAnimations(int, int)}
  *
  * 作者:幻海流心
  * GitHub:https://github.com/HuanHaiLiuXin
