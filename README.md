@@ -1,5 +1,4 @@
 # SweetTips
----
 快意灵动的提示库,自定义Toast,Snackbar,一行代码搞定多重属性设置!    
 ### 为什么写这个库
 详见简书: [**SweetTips: 快意灵动的Android提示库!**](http://www.jianshu.com/p/26dfafc5410f)
