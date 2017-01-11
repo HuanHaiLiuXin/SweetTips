@@ -19,7 +19,8 @@ Android原生Toast及Design包中的Snackbar，实现一些常见需求比较繁
 &emsp;&emsp;![](https://github.com/HuanHaiLiuXin/SweetTips/blob/master/%E5%BD%95%E5%B1%8F/SweetToast%E5%8F%8ASweetSnackbar%E6%95%88%E6%9E%9C%E5%BD%95%E5%B1%8F.gif)   
 
 ### 下载
-[APK](https://github.com/HuanHaiLiuXin/SweetTips/blob/master/APK/sweetTips.apk)
+[apk](https://github.com/HuanHaiLiuXin/SweetTips/blob/master/APK/sweetTips.apk)
+[aar](https://github.com/HuanHaiLiuXin/SweetTips/blob/master/APK/sweettips-1.0.aar)
 
 ### 使用
 ##### SweetToast:
