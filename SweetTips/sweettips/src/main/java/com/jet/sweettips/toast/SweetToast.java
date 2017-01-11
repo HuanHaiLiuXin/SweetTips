@@ -3,6 +3,7 @@ package com.jet.sweettips.toast;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
@@ -81,6 +82,12 @@ import java.lang.annotation.RetentionPolicy;
  *              {@link #center()}       //设置当前SweetToast实例的显示位置:正中
  *              {@link #layoutAbove(View, int)}     //将当前SweetToast实例显示在指定View的顶部
  *              {@link #layoutBellow(View, int)}    //将当前SweetToast实例显示在指定View的底部
+ *          11:将当前SweetToast实例添加到队列{@link SweetToastManager#queue}中,若队列为空,则加入队列后直接进行展示
+ *              {@link #show()}
+ *          12:利用队列{@link SweetToastManager#queue}中正在展示的SweetToast实例,继续展示当前SweetToast实例的内容
+ *              {@link #showByPrevious()}
+ *          13:清空队列{@link SweetToastManager#queue}中已经存在的SweetToast实例,直接展示当前SweetToast实例的内容
+ *              {@link #showImmediate()}
  *      注意：
  *          1:SweetToast实例的动画分为两类，且两类动画互斥，有且必有其中一种会进行展示
  *              1.1:利用{@link android.view.WindowManager.LayoutParams#windowAnimations}，指定的系统内置出入场动画资源，
