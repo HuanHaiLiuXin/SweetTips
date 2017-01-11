@@ -1,8 +1,9 @@
 # SweetTips
 快意灵动的提示库,自定义Toast,Snackbar,一行代码搞定多重属性设置!    
 ### 为什么写这个库
-详见简书: [**SweetTips: 快意灵动的Android提示库!**](http://www.jianshu.com/p/26dfafc5410f)
-Android原生Toast及Design包中的Snackbar，实现一些较常见的需求比较繁琐：  
+详见简书: [**SweetTips: 快意灵动的Android提示库!**](http://www.jianshu.com/p/26dfafc5410f)  
+
+Android原生Toast及Design包中的Snackbar，实现一些常见需求比较繁琐：  
 
 **Toast:**
 - 原生Toast无法/不方便自定义显示时间;
