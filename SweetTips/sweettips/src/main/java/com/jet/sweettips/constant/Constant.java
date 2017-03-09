@@ -55,7 +55,7 @@ public final class Constant {
     //flyme6中7配色
     public static final int color_flyme_blue_sky = 0XFF198DED;      //天蓝
     public static final int color_flyme_blue_green = 0XFF04C0CF;    //蓝绿
-    public static final int color_flyme_green = 0XFF04C0CF;         //绿
+    public static final int color_flyme_green = 0XFF3BC06B;         //绿
     public static final int color_flyme_yellow = 0XFFFFBE26;        //黄
     public static final int color_flyme_orange = 0XFFFC5B23;        //橙
     public static final int color_flyme_red_dark = 0XFFD33A2A;      //深红
