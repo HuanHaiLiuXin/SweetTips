@@ -132,7 +132,7 @@ SnackbarUtils.Long(buttonSnackbarCustomAnim,"Snackbar自定义动画").anim(R.an
 - 提升SweetToast出入场动画的兼容性
 
 ### 开发者:
-- **幻海流心**  
-- **Email:**wall0920@163.com  
-- **简书:**http://www.jianshu.com/users/5702e6847f31/latest_articles  
-- **GitHub:**https://github.com/HuanHaiLiuXin
+&emsp;&emsp;**幻海流心**  
+&emsp;&emsp;**Email:** wall0920@163.com  
+&emsp;&emsp;**简书:** http://www.jianshu.com/users/5702e6847f31/latest_articles   
+&emsp;&emsp;**GitHub:** https://github.com/HuanHaiLiuXin  
